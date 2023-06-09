@@ -5,6 +5,7 @@
 	<style type="text/css">
 		body {
 			font-family: Arial, sans-serif;
+            background: url('https://source.unsplash.com/1600x900/?landscape');
 		}
 		table {
 			border-collapse: collapse;
@@ -26,24 +27,50 @@
 			background-color: #007bff;
 			color: #fff;
 		}
+        .calendarPaper {
+        	max-width: 800px;
+            margin: 0 auto;
+            background: #ffffffdd;
+            padding: 50px;
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 0px 10px #000;
+        }
+        
+        h1 {
+        	margin-top: 0;
+        }
+        
+        center {
+        	color: white;
+            text-shadow: 0px 0px 5px #000;
+        }
 	</style>
 </head>
 <body>
-	<h1 id='title'>Mobiz-Advanced-Calendar</h1>
-	<table>
-		<thead>
-			<tr>
-				<th>Sunday</th>
-				<th>Monday</th>
-				<th>Tuesday</th>
-				<th>Wednesday</th>
-				<th>Thursday</th>
-				<th>Friday</th>
-				<th>Saturday</th>
-			</tr>
-		</thead>
-		<tbody></tbody>
-	</table>
+	<br>
+	<div class='calendarPaper'>
+    	<h1 id='title'>Mobiz-Advanced-Calendar</h1>
+    	<table>
+            <thead>
+                <tr>
+                    <th>Sunday</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>
+                </tr>
+            </thead>
+          <tbody></tbody>
+		</table>
+    </div>
+    <br>
+    <center>
+    	Mobiz-Advanced-Calendar <br>
+        © 2023 Mobiz-Advanced-Technologies
+    </center>
 
 	<script type="text/javascript">
 		window.onload = function(){
