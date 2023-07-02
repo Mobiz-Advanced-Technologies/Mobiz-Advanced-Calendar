@@ -1,92 +1,105 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Calendar App</title>
 	<style type="text/css">
 		body {
 			font-family: Arial, sans-serif;
-            background: url('https://source.unsplash.com/1600x900/?landscape');
+			background: url('https://source.unsplash.com/1600x900/?landscape');
 		}
+
+		.appointment:hover {
+			background: #005ec3 !important;
+		}
+
 		table {
 			border-collapse: collapse;
 			width: 100%;
 		}
-		th, td {
+
+		th,
+		td {
 			text-align: center;
 			padding: 10px;
 			border: 1px solid #ddd;
 		}
+
 		th {
 			background-color: #f2f2f2;
 		}
+
 		td:hover {
 			background-color: #f2f2f2;
 			cursor: pointer;
 		}
+
 		.appointment {
 			background-color: #007bff;
 			color: #fff;
 		}
-        .calendarPaper {
-        	max-width: 800px;
-            margin: 0 auto;
-            background: #ffffffdd;
-            padding: 50px;
-            border-radius: 5px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0px 0px 10px #000;
-        }
-        
-        h1 {
-        	margin-top: 0;
-        }
-        
-        center {
-        	color: white;
-            text-shadow: 0px 0px 5px #000;
-        }
+
+		.calendarPaper {
+			max-width: 800px;
+			margin: 0 auto;
+			background: #ffffffdd;
+			padding: 50px;
+			border-radius: 5px;
+			backdrop-filter: blur(10px);
+			box-shadow: 0px 0px 10px #000;
+		}
+
+		h1 {
+			margin-top: 0;
+		}
+
+		center {
+			color: white;
+			text-shadow: 0px 0px 5px #000;
+		}
 	</style>
 </head>
+
 <body>
 	<br>
 	<div class='calendarPaper'>
-    	<h1 id='title'>Mobiz-Advanced-Calendar</h1>
-    	<table>
-            <thead>
-                <tr>
-                    <th>Sunday</th>
-                    <th>Monday</th>
-                    <th>Tuesday</th>
-                    <th>Wednesday</th>
-                    <th>Thursday</th>
-                    <th>Friday</th>
-                    <th>Saturday</th>
-                </tr>
-            </thead>
-          <tbody></tbody>
+		<h1 id='title'>Mobiz-Advanced-Calendar</h1>
+		<table>
+			<thead>
+				<tr>
+					<th>Sunday</th>
+					<th>Monday</th>
+					<th>Tuesday</th>
+					<th>Wednesday</th>
+					<th>Thursday</th>
+					<th>Friday</th>
+					<th>Saturday</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
 		</table>
-    </div>
-    <br>
-    <center>
-    	Mobiz-Advanced-Calendar <br>
-        © 2023 Mobiz-Advanced-Technologies
-    </center>
+	</div>
+	<br>
+	<center>
+		Mobiz-Advanced-Calendar <br>
+		© 2023 Mobiz-Advanced-Technologies
+	</center>
 
 	<script type="text/javascript">
-		window.onload = function(){
+		window.onload = function () {
 			const today = new Date();
 			let currentMonth = today.getMonth();
 			let currentYear = today.getFullYear();
-            
-            const allmonths = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-            let monthInString = allmonths[currentMonth];
-            
-            document.getElementById('title').innerText = monthInString + " " + currentYear;
+
+			const allmonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+			let monthInString = allmonths[currentMonth];
+
+			document.getElementById('title').innerText = monthInString + " " + currentYear;
 
 			showCalendar(currentMonth, currentYear);
 		}
 
-		function showCalendar(month, year){
+		function showCalendar(month, year) {
 			const firstDay = (new Date(year, month)).getDay();
 			const daysInMonth = 32 - new Date(year, month, 32).getDate();
 
@@ -94,16 +107,16 @@
 			tbody.innerHTML = '';
 
 			let date = 1;
-			for (let i = 0; i < 6; i++){
+			for (let i = 0; i < 6; i++) {
 				const row = document.createElement('tr');
 
-				for (let j = 0; j < 7; j++){
-					if (i === 0 && j < firstDay){
+				for (let j = 0; j < 7; j++) {
+					if (i === 0 && j < firstDay) {
 						const cell = document.createElement('td');
 						cell.innerHTML = '';
 						row.appendChild(cell);
 					}
-					else if (date > daysInMonth){
+					else if (date > daysInMonth) {
 						break;
 					}
 					else {
@@ -111,18 +124,18 @@
 						cell.innerHTML = date;
 
 						const currentDate = new Date();
-						if (currentDate.getMonth() === month && currentDate.getFullYear() === year && currentDate.getDate() === date){
+						if (currentDate.getMonth() === month && currentDate.getFullYear() === year && currentDate.getDate() === date) {
 							cell.style.backgroundColor = '#f2f2f2';
 						}
 
-						cell.addEventListener('click', function(){
-							const appointment = prompt('Enter appointment for ' + date + '/' + (month+1) + '/' + year);
+						cell.addEventListener('click', function () {
+							const appointment = prompt('Enter appointment for ' + date + '/' + (month + 1) + '/' + year);
 
-							if (appointment !== null && appointment !== ''){
+							if (appointment !== null && appointment !== '') {
 								cell.classList.add('appointment');
 								cell.title = appointment;
 							}
-							else if (appointment === ''){
+							else if (appointment === '') {
 								cell.classList.remove('appointment');
 								cell.title = '';
 							}
@@ -136,14 +149,14 @@
 			}
 		}
 
-		function previousMonth(){
+		function previousMonth() {
 			const currentMonth = (document.querySelector('.current-month').textContent).split(' ')[0];
 			const currentYear = Number((document.querySelector('.current-month').textContent).split(' ')[1]);
 
 			let previousMonth = currentMonth - 1;
 			let previousYear = currentYear;
 
-			if (previousMonth === -1){
+			if (previousMonth === -1) {
 				previousMonth = 11;
 				previousYear--;
 			}
@@ -153,14 +166,14 @@
 			document.querySelector('.current-month').textContent = getMonthName(previousMonth) + ' ' + previousYear;
 		}
 
-		function nextMonth(){
+		function nextMonth() {
 			const currentMonth = (document.querySelector('.current-month').textContent).split(' ')[0];
 			const currentYear = Number((document.querySelector('.current-month').textContent).split(' ')[1]);
 
 			let nextMonth = currentMonth + 1;
 			let nextYear = currentYear;
 
-			if (nextMonth === 12){
+			if (nextMonth === 12) {
 				nextMonth = 0;
 				nextYear++;
 			}
@@ -170,11 +183,12 @@
 			document.querySelector('.current-month').textContent = getMonthName(nextMonth) + ' ' + nextYear;
 		}
 
-		function getMonthName(month){
+		function getMonthName(month) {
 			const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
-								'August', 'September', 'October', 'November', 'December'];
+				'August', 'September', 'October', 'November', 'December'];
 			return monthNames[month];
 		}
 	</script>
 </body>
+
 </html>
